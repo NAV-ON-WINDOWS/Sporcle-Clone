@@ -44,4 +44,8 @@ while len(guessed_capitals) < len(capitals):
         tpen.goto(capital_data["x"].item(), capital_data["y"].item())
         tpen.write(answer)
 
+    if len(guessed_capitals) == len(capitals):
+        print("Congratulations, you've guessed it all!")
+        screen.bye()
+
 screen.mainloop()
