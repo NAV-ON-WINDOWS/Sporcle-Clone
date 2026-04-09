@@ -22,7 +22,7 @@ guessed_capitals = []
 capitals = data["Capital"].to_list()
 
 while len(guessed_capitals) < len(capitals):
-    answer = screen.textinput(title=f"{len(guessed_capitals) / 27}",
+    answer = screen.textinput(title=f"{len(guessed_capitals)} / 27",
                               prompt="Enter your answer: ").title()
 
     if answer == "Exit":
