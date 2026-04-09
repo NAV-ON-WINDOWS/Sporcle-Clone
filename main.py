@@ -2,7 +2,7 @@ import turtle as t
 import pandas as pd
 
 screen = t.Screen()
-screen.setup(width=982, height=800)
+screen.setup(width=982, height=760)
 screen.title("Indian States Guessing Game")
 
 img = "india_map.gif"
@@ -32,7 +32,7 @@ while len(guessed_capitals) < len(capitals):
                 missing_capitals.append(capital)
         print("Capitals you couldn't guess are:")
         print(f" \n".join(missing_capitals))
-
+        screen.bye()
         break
 
     if answer in capitals:
