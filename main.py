@@ -1,5 +1,8 @@
 import turtle as t
 import pandas as pd
+import tkinter as tk
+from tkinter import messagebox
+import time
 
 screen = t.Screen()
 screen.setup(width=982, height=760)
@@ -11,15 +14,44 @@ t.addshape(img)
 tim = t.Turtle()
 tim.shape(img)
 
-# def get_mouse_click(x,y):
-#     print(f"{x}, {y}")
-# t.onscreenclick(get_mouse_click)
-
 data = pd.read_csv("capitals.csv")
-# print(data)
 
 guessed_capitals = []
 capitals = data["Capital"].to_list()
+
+
+class Countdown:
+    def __init__(self, root):
+        self.root = root
+        self.remaining_seconds = 5 * 60
+        self.timer_window = tk.Toplevel(self.root)
+        self.timer_window.title("Time left:")
+        self.timer_window.geometry("200x100")
+
+        # This line keeps the timer on top
+        self.timer_window.attributes("-topmost", True)
+
+        self.label = tk.Label(self.timer_window, text="", font=("Helvetica", 48))
+        self.label.pack(expand=True)
+        self.update_timer()
+
+    def update_timer(self):
+        if self.remaining_seconds >= 0:
+            mins, secs = divmod(self.remaining_seconds, 60)
+            time_format = '{:02d}:{:02d}'.format(mins, secs)
+            self.label.config(text=time_format)
+            self.remaining_seconds -= 1
+            self.root.after(1000, self.update_timer)
+        else:
+            self.end_game()
+
+    def end_game(self):
+        messagebox.showinfo("OOPS!", "You ran out of time")
+        screen.bye()
+
+
+root = screen.getcanvas().winfo_toplevel()
+timer = Countdown(root)
 
 while len(guessed_capitals) < len(capitals):
     answer = screen.textinput(title=f"{len(guessed_capitals)} / 28",
