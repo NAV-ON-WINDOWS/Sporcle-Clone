@@ -2,7 +2,6 @@ import turtle as t
 import pandas as pd
 import tkinter as tk
 from tkinter import messagebox
-import time
 
 screen = t.Screen()
 screen.setup(width=982, height=760)
