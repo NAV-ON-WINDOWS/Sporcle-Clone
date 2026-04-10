@@ -22,7 +22,7 @@ guessed_capitals = []
 capitals = data["Capital"].to_list()
 
 while len(guessed_capitals) < len(capitals):
-    answer = screen.textinput(title=f"{len(guessed_capitals)} / 27",
+    answer = screen.textinput(title=f"{len(guessed_capitals)} / 28",
                               prompt="Enter your answer: ").title()
 
     if answer == "Exit":
@@ -35,7 +35,7 @@ while len(guessed_capitals) < len(capitals):
         screen.bye()
         break
 
-    if answer in capitals:
+    if answer in capitals and answer not in guessed_capitals:
         guessed_capitals.append(answer)
         tpen = t.Turtle()
         tpen.hideturtle()
